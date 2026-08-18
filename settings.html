@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><aside class="sidebar"><div class="logo">🛒 SuperMarket Pro</div><nav class="nav"><a class="" href="index.html">📊 Dashboard</a><a class="" href="products.html">📦 Products</a><a class="" href="stock.html">📋 Stock</a><a class="" href="sales.html">💰 Sales</a><a class="" href="reports.html">📈 Reports</a><a class="" href="live-data.html">🌐 Live Data</a><a class="" href="ai-assistant.html">🤖 AI Assistant</a><a class="" href="social-media.html">📱 Social Media</a><a class="active" href="settings.html">⚙️ Settings</a></nav></aside>
+<main class="main"><header class="header"><div><div class="eyebrow">SMART RETAIL OPERATIONS</div><h1>Settings</h1><div class="date">Inventory • Sales • Analytics • AI</div></div>
+<div class="header-tools"><input id="pageSearch" class="search" placeholder="Search this page..." oninput="filterPage()"></div></header>
+<section class="page-section">
+    <h2>⚙️ Settings</h2>
+    <div class="settings-grid">
+      <label>Store Name<input id="storeName" value="SuperMarket"></label>
+      <label>Low Stock Threshold<input id="thresholdInput" type="number" value="10" min="0"></label>
+    </div>
+    <button onclick="saveSettings()">💾 Save Settings</button>
+    <span id="settingsMsg"></span>
+  </section><div class="footer">Supermarket Goods Management System • GitHub / Netlify Ready</div></main>
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{storeName.value=localStorage.getItem("storeName")||"SuperMarket";thresholdInput.value=localStorage.getItem("stockThreshold")||10});
+function saveSettings(){localStorage.setItem("storeName",storeName.value.trim()||"SuperMarket");localStorage.setItem("stockThreshold",thresholdInput.value);settingsMsg.textContent="Settings saved successfully."}
+</script></body></html>

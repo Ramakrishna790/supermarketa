@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Supermarket Assistant</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><aside class="sidebar"><div class="logo">🛒 SuperMarket Pro</div><nav class="nav"><a class="" href="index.html">📊 Dashboard</a><a class="" href="products.html">📦 Products</a><a class="" href="stock.html">📋 Stock</a><a class="" href="sales.html">💰 Sales</a><a class="" href="reports.html">📈 Reports</a><a class="" href="live-data.html">🌐 Live Data</a><a class="active" href="ai-assistant.html">🤖 AI Assistant</a><a class="" href="social-media.html">📱 Social Media</a><a class="" href="settings.html">⚙️ Settings</a></nav></aside>
+<main class="main"><header class="header"><div><div class="eyebrow">SMART RETAIL OPERATIONS</div><h1>AI Supermarket Assistant</h1><div class="date">Inventory • Sales • Analytics • AI</div></div>
+<div class="header-tools"><input id="pageSearch" class="search" placeholder="Search this page..." oninput="filterPage()"></div></header>
+<section class="page-section">
+    <div class="ai-header">
+      <div>
+        <h2>🤖 AI Supermarket Assistant <span class="ai-badge">KNOWLEDGE + DASHBOARD AI</span></h2>
+        <p>Ask questions about your products, stock, sales and reports.</p>
+      </div>
+      <span class="ai-status">● Online</span>
+    </div>
+
+    <div class="quick-prompts">
+      <button onclick="askAI('Which products need restocking?')">⚠️ Restock</button>
+      <button onclick="askAI('What is my total stock value?')">💰 Stock Value</button>
+      <button onclick="askAI('Show me my best selling products.')">📈 Best Sellers</button>
+      <button onclick="askAI('Give me a summary of my supermarket.')">📊 Summary</button>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-message ai">
+        <div class="avatar">🤖</div>
+        <div class="bubble">
+          Hello! I'm your supermarket AI assistant. I can analyze the live dashboard data and help with stock, products and sales.
+          <div class="suggestions">
+            <span onclick="askAI('Which products need restocking?')">Which products need restocking?</span>
+            <span onclick="askAI('How many products are out of stock?')">How many are out of stock?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input id="aiInput" type="text" placeholder="Ask about products, stock, sales..." onkeydown="if(event.key==='Enter')sendAI()">
+      <button onclick="sendAI()">➤ Send</button>
+    </div>
+    <div class="ai-tools"><button onclick="clearAIHistory()">🧹 Clear Chat</button><button onclick="exportDashboardRecord()">💾 Record Dashboard</button><button onclick="exportAIHistory()">⬇ Export AI Chat</button><button onclick="document.getElementById('recordFile').click()">⬆ Restore Record</button><input id="recordFile" type="file" accept=".json" hidden onchange="importDashboardRecord(event)"></div><div class="ai-memory" id="aiKnowledge">Knowledge base loaded: supermarket operations, inventory, pricing, sales, procurement, customers and dashboard data.</div>
+    <div class="ai-note">AI analyzes your current inventory, sales and dashboard signals. Chat history and dashboard records can be saved locally or exported as JSON.</div>
+  </section><div class="footer">Supermarket Goods Management System • GitHub / Netlify Ready</div></main>
+<script src="assets/app.js"></script>
+<script>
+function dashboardForAI(){const low=PRODUCTS.filter(x=>x[2]>0&&x[2]<=threshold()),out=PRODUCTS.filter(x=>x[2]===0),value=PRODUCTS.reduce((s,x)=>s+x[2]*x[3],0),rev=SALES.reduce((s,x)=>s+x[1]*x[2],0);return{low,out,value,rev}}
+function addChatMessage(t,type){chatWindow.insertAdjacentHTML("beforeend",`<div class="chat-message ${type}"><div class="avatar">${type==="ai"?"🤖":"👤"}</div><div class="bubble">${t}</div></div>`);chatWindow.scrollTop=chatWindow.scrollHeight}
+function aiLocal(q){const s=q.toLowerCase(),d=dashboardForAI();if(/restock|low stock|reorder/.test(s))return d.low.length?"Restock: "+d.low.map(x=>x[0]+" ("+x[2]+")").join(", "):"No low-stock products.";if(/out of stock/.test(s))return d.out.length?"Out of stock: "+d.out.map(x=>x[0]).join(", "):"None out of stock.";if(/stock value|inventory value/.test(s))return"Inventory value: "+money(d.value);if(/sales|revenue/.test(s))return"Recorded sales: "+money(d.rev);if(/summary|dashboard/.test(s))return`Products: ${PRODUCTS.length}<br>Stock value: ${money(d.value)}<br>Low stock: ${d.low.length}<br>Out of stock: ${d.out.length}<br>Sales: ${money(d.rev)}`;const p=PRODUCTS.find(x=>s.includes(x[0].toLowerCase()));if(p)return`${p[0]}: ${p[2]} units, ${money(p[3])} each.`;return"I can answer questions about products, inventory, sales, revenue, restocking and reports."}
+function sendAI(){const q=aiInput.value.trim();if(!q)return;addChatMessage(esc(q),"user");aiInput.value="";setTimeout(()=>addChatMessage(aiLocal(q),"ai"),200)}
+function askAI(q){aiInput.value=q;sendAI()}
+function clearAIHistory(){chatWindow.innerHTML='<div class="chat-message ai"><div class="avatar">🤖</div><div class="bubble">Chat cleared.</div></div>'}
+function exportDashboardRecord(){const rec={exportedAt:new Date().toISOString(),products:PRODUCTS,sales:SALES,summary:dashboardForAI()};const u=URL.createObjectURL(new Blob([JSON.stringify(rec,null,2)],{type:"application/json"})),a=document.createElement("a");a.href=u;a.download="dashboard-record.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function exportAIHistory(){const msgs=[...document.querySelectorAll("#chatWindow .chat-message")].map(m=>({role:m.classList.contains("ai")?"ai":"user",text:m.querySelector(".bubble").innerText}));const u=URL.createObjectURL(new Blob([JSON.stringify(msgs,null,2)],{type:"application/json"})),a=document.createElement("a");a.href=u;a.download="ai-chat-history.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function importDashboardRecord(event){const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const rec=JSON.parse(reader.result);addChatMessage("Restored dashboard record from "+esc(file.name)+" (exported "+esc(rec.exportedAt||"unknown date")+").","ai")}catch(e){alert("Invalid dashboard record file.")}event.target.value=""};reader.readAsText(file)}
+</script></body></html>
