@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sales Management</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><aside class="sidebar"><div class="logo">🛒 SuperMarket Pro</div><nav class="nav"><a class="" href="index.html">📊 Dashboard</a><a class="" href="products.html">📦 Products</a><a class="" href="stock.html">📋 Stock</a><a class="active" href="sales.html">💰 Sales</a><a class="" href="reports.html">📈 Reports</a><a class="" href="live-data.html">🌐 Live Data</a><a class="" href="ai-assistant.html">🤖 AI Assistant</a><a class="" href="social-media.html">📱 Social Media</a><a class="" href="settings.html">⚙️ Settings</a></nav></aside>
+<main class="main"><header class="header"><div><div class="eyebrow">SMART RETAIL OPERATIONS</div><h1>Sales Management</h1><div class="date">Inventory • Sales • Analytics • AI</div></div>
+<div class="header-tools"><input id="pageSearch" class="search" placeholder="Search this page..." oninput="filterPage()"></div></header>
+<section class="page-section">
+    <h2>🧾 Recent Sales</h2>
+    <div class="actions"><button onclick="addSale()">＋ Add Sale</button><button onclick="window.print()">🖨 Print Report</button></div>
+    <table>
+      <thead><tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th></tr></thead>
+      <tbody id="salesBody">
+<tr><td>Rice</td><td>12</td><td>₹45.33</td><td>₹543.96</td></tr>
+<tr><td>Milk</td><td>18</td><td>₹61.01</td><td>₹1,098.18</td></tr>
+<tr><td>Bread</td><td>14</td><td>₹40.00</td><td>₹560.00</td></tr>
+<tr><td>Sugar</td><td>9</td><td>₹50.14</td><td>₹451.26</td></tr>
+<tr><td>Sunflower Oil</td><td>6</td><td>₹190.03</td><td>₹1,140.18</td></tr>
+<tr><td>Biscuits</td><td>11</td><td>₹30.00</td><td>₹330.00</td></tr>
+<tr><td>Tur Dal</td><td>5</td><td>₹123.49</td><td>₹617.45</td></tr>
+<tr><td>Eggs</td><td>8</td><td>₹85.91</td><td>₹687.28</td></tr>
+
+    </table>
+  </section><div class="footer">Supermarket Goods Management System • GitHub / Netlify Ready</div></main>
+<script src="assets/app.js"></script>
+<script>
+function addSale(){const n=prompt("Product name"),q=Number(prompt("Quantity")),p=Number(prompt("Price per item"));if(!n||q<=0||p<0||!Number.isFinite(q)||!Number.isFinite(p)){alert("Enter valid sale details.");return}salesBody.insertAdjacentHTML("afterbegin",`<tr><td>${esc(n)}</td><td>${q}</td><td>${money(p)}</td><td>${money(q*p)}</td></tr>`);alert("Sale added successfully.")}
+</script></body></html>

@@ -1,0 +1,1 @@
+exports.handler=async()=>({statusCode:200,headers:{"Content-Type":"application/json"},body:JSON.stringify({updatedAt:new Date().toISOString(),sources:{instagram:{connected:false},facebook:{connected:false},youtube:{connected:false},tiktok:{connected:false},x:{connected:false},googleTrends:{connected:false}}})});

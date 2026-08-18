@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Management</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><aside class="sidebar"><div class="logo">🛒 SuperMarket Pro</div><nav class="nav"><a class="" href="index.html">📊 Dashboard</a><a class="active" href="products.html">📦 Products</a><a class="" href="stock.html">📋 Stock</a><a class="" href="sales.html">💰 Sales</a><a class="" href="reports.html">📈 Reports</a><a class="" href="live-data.html">🌐 Live Data</a><a class="" href="ai-assistant.html">🤖 AI Assistant</a><a class="" href="social-media.html">📱 Social Media</a><a class="" href="settings.html">⚙️ Settings</a></nav></aside>
+<main class="main"><header class="header"><div><div class="eyebrow">SMART RETAIL OPERATIONS</div><h1>Product Management</h1><div class="date">Inventory • Sales • Analytics • AI</div></div>
+<div class="header-tools"><input id="pageSearch" class="search" placeholder="Search this page..." oninput="filterPage()"></div></header>
+<section class="page-section">
+    <div class="section-head">
+      <h2>📦 Product Management</h2><p class="report-text">Quantity is treated as kg for Department of Consumer Affairs commodity-priced items; packaged-product prices are illustrative. Inventory value is calculated from the quantities and prices shown.</p>
+      <button onclick="openProductForm()">＋ Add Product</button>
+    </div>
+    <div class="actions">
+      <input id="productSearch" class="search" type="text" placeholder="Search products..." onkeyup="filterProducts()">
+      <button onclick="resetProductSearch()">Clear</button>
+    </div>
+    <table id="productTable">
+      <thead><tr><th>Product</th><th>Category</th><th>Quantity</th><th>Price</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody id="productBody">
+<tr><td>Rice</td><td>Grocery</td><td>8</td><td>₹45.33</td><td><span class="badge">LOW STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Wheat</td><td>Grocery</td><td>42</td><td>₹31.40</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Atta</td><td>Grocery</td><td>28</td><td>₹37.11</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Gram Dal</td><td>Grocery</td><td>18</td><td>₹86.68</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Tur Dal</td><td>Grocery</td><td>7</td><td>₹123.49</td><td><span class="badge">LOW STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Moong Dal</td><td>Grocery</td><td>24</td><td>₹111.89</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Masoor Dal</td><td>Grocery</td><td>16</td><td>₹90.31</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Sugar</td><td>Grocery</td><td>35</td><td>₹50.14</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Salt</td><td>Grocery</td><td>50</td><td>₹22.13</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Sunflower Oil</td><td>Grocery</td><td>6</td><td>₹190.03</td><td><span class="badge">LOW STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Mustard Oil</td><td>Grocery</td><td>14</td><td>₹196.85</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Milk</td><td>Dairy</td><td>5</td><td>₹61.01</td><td><span class="badge">LOW STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Butter</td><td>Dairy</td><td>18</td><td>₹60.14</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Eggs</td><td>Dairy</td><td>22</td><td>₹85.91</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Bread</td><td>Grocery</td><td>35</td><td>₹40.00</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Biscuits</td><td>Snacks</td><td>7</td><td>₹30.00</td><td><span class="badge">LOW STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Tea</td><td>Beverages</td><td>11</td><td>₹275.57</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Potato</td><td>Grocery</td><td>32</td><td>₹22.87</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Onion</td><td>Grocery</td><td>27</td><td>₹35.57</td><td><span class="ok">IN STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+<tr><td>Tomato</td><td>Grocery</td><td>0</td><td>₹38.81</td><td><span class="badge">OUT OF STOCK</span></td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>
+
+    </table>
+  </section><div class="footer">Supermarket Goods Management System • GitHub / Netlify Ready</div></main>
+<div class="modal" id="productModal">
+  <div class="modal-box">
+    <h2 id="productModalTitle">Add Product</h2>
+    <label>Product Name<input id="pName" type="text" placeholder="e.g. Rice"></label>
+    <label>Category<select id="pCategory">
+      <option>Grocery</option><option>Dairy</option><option>Snacks</option><option>Beverages</option><option>Other</option>
+    </select></label>
+    <label>Quantity<input id="pQty" type="number" min="0" placeholder="0"></label>
+    <label>Price<input id="pPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+    <div class="modal-actions">
+      <button onclick="saveProduct()">💾 Save</button>
+      <button class="close" onclick="closeProductForm()">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+let editRow=null;
+function openProductForm(){editRow=null;document.getElementById("productModalTitle").textContent="Add Product";document.getElementById("pName").value="";document.getElementById("pCategory").value="Grocery";document.getElementById("pQty").value="";document.getElementById("pPrice").value="";document.getElementById("productModal").style.display="flex"}
+function closeProductForm(){document.getElementById("productModal").style.display="none"}
+function saveProduct(){const n=pName.value.trim(),c=pCategory.value,q=Number(pQty.value),p=Number(pPrice.value);if(!n||q<0||p<0||!Number.isFinite(q)||!Number.isFinite(p)){alert("Enter valid values.");return}const st=q===0?"OUT OF STOCK":q<=threshold()?"LOW STOCK":"IN STOCK";const badge=q===0?'<span class="badge">OUT OF STOCK</span>':q<=threshold()?'<span class="badge">LOW STOCK</span>':'<span class="ok">IN STOCK</span>';const row=`<tr><td>${esc(n)}</td><td>${esc(c)}</td><td>${q}</td><td>${money(p)}</td><td>${badge}</td><td><button class="small" onclick="editProduct(this)">Edit</button> <button class="small danger" onclick="deleteProduct(this)">Delete</button></td></tr>`;if(editRow)editRow.outerHTML=row;else productBody.insertAdjacentHTML("beforeend",row);closeProductForm();alert("Product saved.")}
+function editProduct(btn){editRow=btn.closest("tr");document.getElementById("productModalTitle").textContent="Edit Product";pName.value=editRow.cells[0].innerText;pCategory.value=editRow.cells[1].innerText;pQty.value=editRow.cells[2].innerText;pPrice.value=editRow.cells[3].innerText.replace(/[₹,]/g,"");document.getElementById("productModal").style.display="flex"}
+function deleteProduct(btn){if(confirm("Delete this product?")){btn.closest("tr").remove();alert("Product deleted.")}}
+function filterProducts(){const q=productSearch.value.toLowerCase();document.querySelectorAll("#productBody tr").forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?"":"none")}
+function resetProductSearch(){productSearch.value="";filterProducts()}
+</script></body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Management</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><aside class="sidebar"><div class="logo">🛒 SuperMarket Pro</div><nav class="nav"><a class="" href="index.html">📊 Dashboard</a><a class="" href="products.html">📦 Products</a><a class="active" href="stock.html">📋 Stock</a><a class="" href="sales.html">💰 Sales</a><a class="" href="reports.html">📈 Reports</a><a class="" href="live-data.html">🌐 Live Data</a><a class="" href="ai-assistant.html">🤖 AI Assistant</a><a class="" href="social-media.html">📱 Social Media</a><a class="" href="settings.html">⚙️ Settings</a></nav></aside>
+<main class="main"><header class="header"><div><div class="eyebrow">SMART RETAIL OPERATIONS</div><h1>Stock Management</h1><div class="date">Inventory • Sales • Analytics • AI</div></div>
+<div class="header-tools"><input id="pageSearch" class="search" placeholder="Search this page..." oninput="filterPage()"></div></header>
+<section class="page-section">
+    <h2>⚠️ Low Stock Products</h2>
+    <table id="lowStockTable">
+      <thead><tr><th>Product</th><th>Category</th><th>Quantity</th><th>Status</th></tr></thead>
+      <tbody>
+<tr><td>Rice</td><td>Grocery</td><td class="low">8</td><td><span class="badge">LOW STOCK</span></td></tr>
+<tr><td>Tur Dal</td><td>Grocery</td><td class="low">7</td><td><span class="badge">LOW STOCK</span></td></tr>
+<tr><td>Sunflower Oil</td><td>Grocery</td><td class="low">6</td><td><span class="badge">LOW STOCK</span></td></tr>
+<tr><td>Milk</td><td>Dairy</td><td class="low">5</td><td><span class="badge">LOW STOCK</span></td></tr>
+<tr><td>Biscuits</td><td>Snacks</td><td class="low">7</td><td><span class="badge">LOW STOCK</span></td></tr>
+
+    </table>
+  </section><div class="footer">Supermarket Goods Management System • GitHub / Netlify Ready</div></main>
+<script src="assets/app.js"></script>
+<script>
+function createPO(name){alert("Purchase order draft created for "+name+".")}
+function refreshStock(){location.reload()}
+</script></body></html>
